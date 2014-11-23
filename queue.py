@@ -17,3 +17,19 @@ class Queue:
 		return self.count
 	def isEmpty(self):
 		return self.count == 0
+
+#Test cases
+queue = Queue()
+queue.enqueue(1)
+queue.enqueue(3)
+queue.enqueue(5)
+queue.enqueue(7)
+queue.enqueue(9)
+print queue.size(), 5
+print queue.isEmpty(), False
+print queue.dequeue(), 1
+print queue.dequeue(), 3
+print queue.dequeue(), 5
+print queue.dequeue(), 7
+print queue.dequeue(), 9
+
