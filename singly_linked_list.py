@@ -44,3 +44,15 @@ class LinkedList:
 			while currnode != None:
 				print currnode.data
 				currnode = currnode.next
+
+#Test cases
+linkedlist = LinkedList()
+linkedlist.insert(1)
+linkedlist.insert(2)
+linkedlist.insert(3)
+linkedlist.insert(4)
+print 1,2,3,4
+linkedlist.printlist()
+linkedlist.remove(3)
+print 1,2,4
+linkedlist.printlist()
