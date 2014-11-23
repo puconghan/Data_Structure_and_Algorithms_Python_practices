@@ -5,7 +5,7 @@ class HashEntry:
 	def getkey(self):
 		return self.key
 	def getvalue(self):
-		return self.value
+		return self.data
 
 #Linear probling
 class HashTable:
@@ -27,6 +27,12 @@ class HashTable:
 		else:
 			return None, 'Key not found in hashtable'
 
+#Test cases
+hashtable = HashTable(256)
+hashtable.push(1, 'hello')
+hashtable.push(11, 'world')
+print hashtable.get(1), hashtable.get(11)
+
 #Seperate chaining
 class HashTable:
 	def __init__(self, size):
@@ -37,7 +43,7 @@ class HashTable:
 		hashkey = key % self.size
 		if self.table[hashkey] is None:
 			self.table[hashkey] = entry
-		if type(self.table[hashkey]) is HashEntry:
+		elif isinstance(self.table[hashkey], HashEntry):
 			temp = self.table[hashkey]
 			self.table[hashkey] = []
 			self.table[hashkey].append(temp)
@@ -48,10 +54,16 @@ class HashTable:
 		hashkey = key % self.size
 		if self.table[hashkey] is None:
 			return None
-		elif type(self.table[hashkey]) is HashEntry:
+		elif isinstance(self.table[hashkey], HashEntry):
 			return self.table[hashkey].getvalue()
 		else:
 			for item in self.table[hashkey]:
 				if item.getkey() == key:
 					return item.getvalue()
 			return None, "Not Found"
+
+#Test cases
+hashtable = HashTable(256)
+hashtable.push(1, 'hello')
+hashtable.push(11, 'world')
+print hashtable.get(1), hashtable.get(11)
