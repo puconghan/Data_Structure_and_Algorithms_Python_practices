@@ -14,6 +14,10 @@ def binary_search(lst, item):
 				first = midpoint + 1
 	return found
 
+#Test case
+print binary_search([1,2,3,4,5,6,7,8], 4), True
+print binary_search([1,2,3,5,6,7,8,9], 4), False
+
 #Traditional recursive solution
 def binary_search(lst, item, first = 0, last = 0):
 	if len(lst) == 0 or item is None:
@@ -29,6 +33,10 @@ def binary_search(lst, item, first = 0, last = 0):
 		else:
 			return binary_search(lst, item, pivot + 1, last)
 
+#Test case
+print binary_search([1,2,3,4,5,6,7,8], 4, 0, 7), True
+print binary_search([1,2,3,5,6,7,8,9], 4, 0, 7), False
+
 #Python list recursive solution
 def binary_search(lst, item):
 	if len(lst) == 0:
@@ -43,3 +51,7 @@ def binary_search(lst, item):
 			return binary_search(lst[:pivot], item)
 		else:
 			return binary_search(lst[pivot+1:], item)
+
+#Test case
+print binary_search([1,2,3,4,5,6,7,8], 4), True
+print binary_search([1,2,3,5,6,7,8,9], 4), False
