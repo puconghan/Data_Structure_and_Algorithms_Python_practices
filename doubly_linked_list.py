@@ -29,7 +29,7 @@ class LinkedList:
 				self.head = self.head.next
 			else:
 				currnode = self.head
-				prevnode = curr
+				prevnode = currnode
 				while currnode is not None:
 					if currnode.data == value:
 						prevnode.next = currnode.next
@@ -54,3 +54,14 @@ class LinkedList:
 					print currnode.data
 					currnode = currnode.prev
 
+#Test cases
+linkedlist = LinkedList()
+linkedlist.insert(1)
+linkedlist.insert(2)
+linkedlist.insert(3)
+linkedlist.insert(4)
+print 1,2,3,4
+linkedlist.printlist()
+linkedlist.remove(3)
+print 1,2,4
+linkedlist.printlist()
