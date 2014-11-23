@@ -31,3 +31,6 @@ def swap(lst, l, r):
 	temp = lst[l]
 	lst[l] = lst[r]
 	lst[r] = temp
+
+#Test cases
+print heap_sort([2,9,3,6,1,8,0,4])
