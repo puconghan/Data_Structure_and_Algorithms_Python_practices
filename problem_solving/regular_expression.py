@@ -9,7 +9,7 @@ def pattern_matching(string, pattern):
         if pattern[0] != '.':
             return (string[0] == pattern[0] and len(string) == 1)
         else:
-            return True
+            return pattern_matching(string[1:], pattern[1:])
     else:
         if pattern[1] == '*':
             if string[0] != pattern[0] and pattern[0] != '.':
@@ -26,14 +26,15 @@ def pattern_matching(string, pattern):
             else:
                 return pattern_matching(string[1:], pattern[1:])
 
+#Test cases
 print pattern_matching('a', 'a'), True
 print pattern_matching('a', 'b'), False
 print pattern_matching('aa', 'aa'), True
 print pattern_matching('aa', 'ab'), False
 print pattern_matching('aa', 'a.'), True
-print pattern_matching('aa', '.*'), True
+print pattern_matching('aaa', 'a.'), False
 print pattern_matching('aaa', 'a*'), True
+print pattern_matching('aa', '.*'), True
 print pattern_matching('aaa', '.*'), True
 print pattern_matching('aabbcc', 'a*c*'), False
 print pattern_matching('abc', 'a*b*c*'), True
-
