@@ -18,9 +18,9 @@ class BinaryTree:
 			self.root = Node(value)
 		else:
 			self._insert(value, self.root)
-	def _insert(self, value, leaf=None):
+	def _insert(self, value, leaf):
 		if value < leaf.getValue():
-			if leaf.hasLeft:
+			if leaf.hasLeft():
 				self._insert(value, leaf.left)
 			else:
 				leaf.left = Node(value)
@@ -32,13 +32,13 @@ class BinaryTree:
 	def delete(self, value):
 		self.root = self._delete(value, self.root)
 	def _delete(self, value, leaf=None):
-		if leaf:
+		if leaf is not None:
 			if value == leaf.getValue():
 				if not leaf.hasLeft() and not leaf.hasRight():
 					leaf = None
-				if leaf.hasLeft() and not leaf.hasRight():
+				elif leaf.hasLeft() and not leaf.hasRight():
 					leaf = leaf.left
-				if not leaf.hasLeft() and leaf.hasRight():
+				elif not leaf.hasLeft() and leaf.hasRight():
 					leaf = leaf.right
 				else:
 					successor = leaf.left
@@ -50,9 +50,9 @@ class BinaryTree:
 						leaf.data = successor.data
 					if parent:
 						parent.right = None
-			if value < leaf.getValue() and leaf.hasLeft():
+			elif value < leaf.getValue() and leaf.hasLeft():
 				leaf.left = self._delete(value, leaf.left)
-			if value > leaf.getValue() and leaf.hasRight():
+			elif value > leaf.getValue() and leaf.hasRight():
 				leaf.right = self._delete(value, leaf.right)
 		return leaf
 	def treesize(self):
@@ -82,12 +82,12 @@ class BinaryTree:
 			return None
 		else:
 			curr = leaf
-			if curr.hasRight():
-				return self.getmin(curr.right)
+			if curr.hasLeft():
+				return self.getmin(curr.left)
 			else:
 				return curr.getValue()
 	#Print level by level from top to the bottom
-	def BreadthFirstTraversal(leaf):
+	def BreadthFirstTraversal(self, leaf):
 		if leaf is not None:
 			queue = [leaf]
 			output = []
@@ -99,7 +99,7 @@ class BinaryTree:
 				if curr.hasRight():
 					queue.append(curr.right)
 			print output
-	def DepthFirstTraversal_preorder(leaf):
+	def DepthFirstTraversal_preorder(self, leaf):
 		if leaf is not None:
 			stack = [leaf]
 			output = []
@@ -111,31 +111,31 @@ class BinaryTree:
 				if curr.hasRight():
 					stack.append(curr.right)
 			print output
-	def DepthFirstTraversal_inorder(leaf):
+	def DepthFirstTraversal_inorder(self, leaf):
 		if leaf is not None:
 			stack = [leaf]
 			output = []
 			while len(stack) > 0:
+				curr = stack.pop(-1)
 				if curr.hasLeft():
 					stack.append(curr.left)
-				curr = stack.pop(-1)
 				output.append(curr.getValue())
 				if curr.hasRight():
 					stack.append(curr.right)
 			print output
-	def DepthFirstTraversal_postorder(leaf):
+	def DepthFirstTraversal_postorder(self, leaf):
 		if leaf is not None:
 			stack = [leaf]
 			output = []
 			while len(stack) > 0:
+				curr = stack.pop(-1)
 				if curr.hasLeft():
 					stack.append(curr.left)
 				if curr.hasRight():
 					stack.append(curr.right)
-				curr = stack.pop(-1)
 				output.append(curr.getValue())
 			print output
-	def printlevel(leaf, level):
+	def printlevel(self, leaf, level):
 		if level == 0:
 			print leaf.data
 		else:
@@ -143,25 +143,59 @@ class BinaryTree:
 				self.printlevel(leaf.left, level - 1)
 			if leaf.hasRight():
 				self.printlevel(leaf.right, level - 1)
-	def printleveldown(leaf):
+	def printleveldown(self, leaf):
 		for i in xrange(self.treedepth()):
 			self.printlevel(leaf, i)
-	def printlevelup(leaf):
+	def printlevelup(self, leaf):
 		for i in xrange(self.treedepth(), -1, -1):
 			self.printlevel(leaf, i)
-	def printdeepestlevel(leaf):
+	def printdeepestlevel(self, leaf):
 		queueone = [leaf]
 		queuetwo = []
 		printlist = []
 		while len(queueone) != 0:
 			node = queueone.pop(0)
-			printlist.append(node.getValue())
 			if node.left:
 				queuetwo.append(node.left)
 			if node.right:
 				queuetwo.append(node.right)
 			if len(queueone) == 0:
 				if len(queuetwo) != 0:
-					queueone = queuetwo
+					printlist = []
+					for item in queuetwo:
+						queueone.append(item)
+						printlist.append(item.getValue())
+					queuetwo = []
 				else:
 					print printlist
+
+#Test cases
+tree = BinaryTree()
+tree.insert(8)
+tree.insert(5)
+tree.insert(12)
+tree.insert(4)
+tree.insert(6)
+tree.insert(15)
+tree.insert(11)
+tree.insert(29)
+tree.insert(1)
+print 'Print Level Up'
+tree.printlevelup(tree.root)
+print 'Print Level Down'
+tree.printleveldown(tree.root)
+print 'Print the deepest Level'
+tree.printdeepestlevel(tree.root)
+print 'Print level 2'
+tree.printlevel(tree.root, 2)
+print 'Get Max'
+print tree.getmax(tree.root)
+print 'Get Min'
+print tree.getmin(tree.root)
+print 'Get Tree Size, Depth'
+print tree.treesize(), tree.treedepth()
+print 'Delete 6'
+tree.delete(6)
+tree.DepthFirstTraversal_inorder(tree.root)
+
+
