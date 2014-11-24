@@ -14,9 +14,11 @@ def has_all_unique_char(inputstring):
             return False
     return True
 
+'''
 #Test case
 print has_all_unique_char('abcdefg'), True
 print has_all_unique_char('abcdefgg'), False
+'''
 
 def has_all_unique_char(inputstring):
     length = len(inputstring)
@@ -26,9 +28,11 @@ def has_all_unique_char(inputstring):
                 return False
     return True
 
+'''
 #Test case
 print has_all_unique_char('abcdefg'), True
 print has_all_unique_char('abcdefgg'), False
+'''
 
 #O(n^2) Using a list data structure
 def has_all_unique_char(inputstring):
@@ -40,9 +44,11 @@ def has_all_unique_char(inputstring):
         list.append(item)
     return True
 
+'''
 #Test case
 print has_all_unique_char('abcdefg'), True
 print has_all_unique_char('abcdefgg'), False
+'''
 
 #O(n) Using a list data structure with assumption of ASCII input string
 def has_all_unique_char(inputstring):
@@ -57,9 +63,11 @@ def has_all_unique_char(inputstring):
                 charlist[ord(char)] = True
         return True
 
+'''
 #Test case
 print has_all_unique_char('abcdefg'), True
 print has_all_unique_char('abcdefgg'), False
+'''
 
 #O(n) Using a hash table (dictionary)
 def has_all_unique_char(inputstring):
@@ -71,17 +79,21 @@ def has_all_unique_char(inputstring):
             char_table[char] = True
     return True
 
+'''
 #Test case
 print has_all_unique_char('abcdefg'), True
 print has_all_unique_char('abcdefgg'), False
+'''
 
 def has_all_unique_char(inputstring):
     if len(inputstring) > 256: return False
     else: return len(set(inputstring)) == len(inputstring)
 
+'''
 #Test case
 print has_all_unique_char('abcdefg'), True
 print has_all_unique_char('abcdefgg'), False
+'''
 
 
 '''
@@ -98,8 +110,10 @@ def reverse_string(inputstring):
         output += stack.pop(-1)
     return output
 
+'''
 #Test case
 print 'Reverse abc: ', reverse_string('abc')
+'''
 
 # O(n) Recursive solution
 def reverse_string(inputstring):
@@ -108,8 +122,10 @@ def reverse_string(inputstring):
     else:
         return inputstring[-1:] + reverse_string(inputstring[:-1])
 
+'''
 #Test case
 print 'Reverse abc: ', reverse_string('abc')
+'''
 
 '''
 1.3 Given two strings, write a method to decide if one is a permutation of the other
@@ -128,9 +144,11 @@ def check_permutation(str1, str2):
                 str2 = re.sub(char, '', str2)
         return True
 
+'''
 #Test case
 print check_permutation('abc', 'cba'), True
 print check_permutation('acd', 'abc'), False
+'''
 
 #Run time depend of sorting algorithm
 def check_permutation(str1, str2):
@@ -139,9 +157,11 @@ def check_permutation(str1, str2):
     else:
         return sorted(str1) == sorted(str2)
 
+'''
 #Test case
 print check_permutation('abc', 'cba'), True
 print check_permutation('acd', 'abc'), False
+'''
 
 #O(n) Use a hash table
 def check_permutation(str1, str2):
@@ -157,9 +177,11 @@ def check_permutation(str1, str2):
             return False
     return True
 
+'''
 #Test case
 print check_permutation('abc', 'cba'), True
 print check_permutation('acd', 'abc'), False
+'''
 
 '''
 1.4 Write a method to replace all space in a string with '%20'
@@ -175,8 +197,10 @@ def replace_space(inputstring):
             result_list.append(char)
     return ''.join(result_list)
 
+'''
 #Test case
 print replace_space('abc def')
+'''
 
 #O(n) Using a queue
 def replace_space(inputstring):
@@ -193,8 +217,10 @@ def replace_space(inputstring):
         outputstring += queue.pop(0)
     return outputstring
 
+'''
 #Test case
 print replace_space('abc def')
+'''
 
 '''
 1.5 Implement a method to perform basic string compression using the counts of repeated characters
@@ -221,8 +247,10 @@ def simple_compress(inputstring):
     else:
         return outputstring
 
+'''
 #Test case
 print simple_compress('aabcccccaaa')
+'''
 
 def simple_compress(inputstring):
     prev = ''
@@ -242,8 +270,10 @@ def simple_compress(inputstring):
             count = 1
     return newstring
 
+'''
 #Test case
 print simple_compress('aabcccccaaa')
+'''
 
 
 '''
@@ -298,6 +328,7 @@ class MatrixProcessor:
             for r in xrange(self.r):
                 self.matrix[r][index] = 0
 
+'''
 #Test cases
 matrix= MatrixProcessor([[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]])
 print matrix
@@ -306,6 +337,7 @@ print matrix.printnewmatrix()
 zeromatrix= MatrixProcessor([[1,2,3,4],[5,6,7,8],[9,10,0,12],[13,14,15,16]])
 zeromatrix.zerorowcolumn()
 print zeromatrix
+'''
 
 '''
 1.8 Assume you have a method isSubstring which checks if one word is a substring of another. Given two strings, s1 and s2, write code to check if s2 is a rotation of s1 using only one call to isSubstring (e.g.,"waterbottle" is a rotation of "erbottlewat").
@@ -331,5 +363,7 @@ def check_rotation(str1, str2):
         else:
             return False
 
+'''
 print check_rotation('waterbottle', 'erbottlewat'), True
 print check_rotation('waterbottle', 'erbottlewag'), False
+'''
