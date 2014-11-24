@@ -23,5 +23,7 @@ def merge(lst1, lst2):
 		count2 += 1
 	return temp
 
+'''
 #Test case
 print merge_sort([2,6,7,3,9,1,5]);
+'''

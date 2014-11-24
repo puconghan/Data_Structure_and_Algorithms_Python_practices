@@ -15,8 +15,10 @@ def quick_sort(lst):
 				right.append(item)
 		return quick_sort(left) + [first] + quick_sort(right)
 
+'''
 #Test case
 print quick_sort([2,6,7,3,9,1,5])
+'''
 
 #pivot is the element in the middle
 def quick_sort(lst):
@@ -35,8 +37,10 @@ def quick_sort(lst):
                 right.append(item)
         return quick_sort(left) + [element] + quick_sort(right)
 
+'''
 #Test case
 print quick_sort([2,6,7,3,9,1,5])
+'''
 
 #pivot is the element in the middle. Pointers moved from both ends [Improved version]
 def quick_sort(lst, l, r):
@@ -59,7 +63,9 @@ def quick_sort(lst, l, r):
 		if right > l:
 			quick_sort(lst, l, right)
 
+'''
 #Test case
 lst = [2,6,7,3,9,1,5];
 quick_sort(lst, 0, len(lst)-1)
 print lst
+'''

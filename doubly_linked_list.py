@@ -54,6 +54,7 @@ class LinkedList:
 					print currnode.data
 					currnode = currnode.prev
 
+'''
 #Test cases
 linkedlist = LinkedList()
 linkedlist.insert(1)
@@ -65,3 +66,4 @@ linkedlist.printlist()
 linkedlist.remove(3)
 print 1,2,4
 linkedlist.printlist()
+'''

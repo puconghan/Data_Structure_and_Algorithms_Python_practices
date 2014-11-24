@@ -169,6 +169,7 @@ class BinaryTree:
 				else:
 					print printlist
 
+'''
 #Test cases
 tree = BinaryTree()
 tree.insert(8)
@@ -197,5 +198,4 @@ print tree.treesize(), tree.treedepth()
 print 'Delete 6'
 tree.delete(6)
 tree.DepthFirstTraversal_inorder(tree.root)
-
-
+'''

@@ -16,6 +16,7 @@ class Stack:
 	def isEmpty(self):
 		return self.count == 0
 
+'''
 #Test cases
 stack = Stack()
 stack.push(2)
@@ -34,3 +35,4 @@ print stack.pop(), 6
 print stack.pop(), 4
 print stack.pop(), 2
 print stack.isEmpty(), True
+'''

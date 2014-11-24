@@ -18,6 +18,7 @@ class Queue:
 	def isEmpty(self):
 		return self.count == 0
 
+'''
 #Test cases
 queue = Queue()
 queue.enqueue(1)
@@ -32,4 +33,4 @@ print queue.dequeue(), 3
 print queue.dequeue(), 5
 print queue.dequeue(), 7
 print queue.dequeue(), 9
-
+'''

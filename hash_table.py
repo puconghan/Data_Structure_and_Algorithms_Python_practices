@@ -27,11 +27,13 @@ class HashTable:
 		else:
 			return None, 'Key not found in hashtable'
 
+'''
 #Test cases
 hashtable = HashTable(256)
 hashtable.push(1, 'hello')
 hashtable.push(11, 'world')
 print hashtable.get(1), hashtable.get(11)
+'''
 
 #Seperate chaining
 class HashTable:
@@ -62,8 +64,10 @@ class HashTable:
 					return item.getvalue()
 			return None, "Not Found"
 
+'''
 #Test cases
 hashtable = HashTable(256)
 hashtable.push(1, 'hello')
 hashtable.push(11, 'world')
 print hashtable.get(1), hashtable.get(11)
+'''
