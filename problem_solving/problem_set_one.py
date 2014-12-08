@@ -465,3 +465,200 @@ def commonAncestor(node1, node2):
             return curr2
         curr2 = curr2.parent
     return None
+
+'''
+This class will be given a list of words (such as might be tokenized from a paragraph of text), and will provide a method that takes two words and returns the shortest distance (in words) between those two words in the provided text.
+Example:
+    WordDistanceFinder finder = new WordDistanceFinder(Arrays.asList("the", "quick", "brown", "fox", "quick"));
+    assert(finder.distance("fox","the") == 3);
+    assert(finder.distance("quick", "fox") == 1);
+'''
+
+class WordDistanceFinder:
+    def __init__(self):
+        self.dictionary = ["the", "quick", "brown", "fox", "quick"]
+    def distance(self, str1, str2):
+        length = len(self.dictionary)
+        index1, index2 = None, None
+        for i in xrange(length):
+            if self.dictionary[i] == str1:
+                index1 = i
+            if self.dictionary[i] == str2:
+                index2 = i
+        if index1 is None or index2 is None:
+            return False, 'Word not in dictionary'
+        else:
+            return abs(index1-index2)
+
+#Test for WordDistanceFinder class
+#finder = WordDistanceFinder()
+#print finder.distance('fox', 'the')
+#print finder.distance('quick', 'fox')
+
+'''
+Find the maximum sum subset in an array with negative integers
+[-2, 1, -3, 4, -1, 2, 1, -5, 4] => [4, -1, 2, 1]
+Kadane's algorithm
+'''
+
+def max_subarray(A):
+    max_ending_here = max_so_far = 0
+    for x in A:
+        max_ending_here = max(0, max_ending_here + x)
+        max_so_far = max(max_so_far, max_ending_here)
+    return max_so_far
+
+def max_subarray(A):
+    max_ending_here = max_so_far = A[0]
+    for x in A[1:]:
+        max_ending_here = max(x, max_ending_here + x)
+        max_so_far = max(max_so_far, max_ending_here)
+    return max_so_far
+
+#Test for max subarray
+#print max_subarray([-2, 1, -3, 4, -1, 2, 1, -5, 4])
+
+'''
+find the Maximum product subset with negative and positive integer
+Input: arr[] = {6, -3, -10, 0, 2}
+Output:   180  // The subarray is {6, -3, -10}
+
+Input: arr[] = {-1, -3, -10, 0, 60}
+Output:   60  // The subarray is {60}
+
+Input: arr[] = {-2, -3, 0, -2, -40}
+Output:   80  // The subarray is {-2, -40}
+'''
+
+def max_product_subset(lst):
+    if len(lst) == 0:
+        return None
+    max_product, min_product, max_so_far = 1, 1, 1
+    for x in lst:
+        if x > 0:
+            max_product *= x
+            min_product = min(min_product*x, 1)
+        elif x == 0:
+            max_product, min_product = 1, 1
+        else:
+            temp = max_product
+            max_product = max(min_product*x, 1)
+            min_product = temp*x
+        if max_product > max_so_far:
+            max_so_far = max_product
+    return max_so_far
+
+#Test for max_product_subset
+#print max_product_subset([6, -3, -10, 0, 2]), 180
+#print max_product_subset([-1, -3, -10, 0, 60]), 60
+#print max_product_subset([-2, -3, 0, -2, -40]), 80
+
+'''
+Given a list of tuples representing intervals, return the range of unique intervals.
+e.g:
+[(1,3), (2,5),(8,9)] should return 5
+'''
+
+def unique_interval(lst):
+    temp, num = {}, 0
+    for (l, r) in lst:
+        while l <= r:
+            if l not in temp:
+                temp[l] = 1
+            else:
+                temp[l] += 1
+            l += 1
+    for key, elem in temp.items():
+        if elem == 1:
+            num += 1
+    return num
+
+#Test for unique interval
+#print unique_interval([(1,3), (2,5), (8,9)]), 5
+
+'''
+Given a sorted array with duplicates and a number, find the range in the
+form of (startIndex, endIndex) of that number. For example,
+
+find_range({0 2 3 3 3 10 10}, 3) should return (2,4).
+find_range({0 2 3 3 3 10 10}, 6) should return (-1,-1).
+The array and the number of duplicates can be large.
+'''
+
+def modified_binary_search(lst, l, r, num):
+    if r < l:
+        return (-1, -1)
+    if r == l and lst[l] != num:
+        return (-1, -1)
+    length = r - l
+    if length == 1:
+        if lst[l] != num or lst[l+1] != num:
+            return (-1, -1)
+    pivot = length // 2 + l
+    if lst[pivot] == num:
+        return expand(lst, pivot)
+    elif num < lst[pivot]:
+        return modified_binary_search(lst, l, pivot, num)
+    else:
+        return modified_binary_search(lst, pivot, r, num)
+
+def expand(lst, pivot):
+    left, right = pivot, pivot
+    while lst[left-1] == lst[pivot]:
+        left -= 1
+    while lst[right+1] == lst[pivot]:
+        right += 1
+    return (left, right)
+
+#Test for modified_binary_search
+#print modified_binary_search([0,2,3,3,3,4,5,6,7,8,9,10,10], 0, 12, 3)
+#print modified_binary_search([0,2,3,3,3,4,5,6,7,8,9,10,10], 0, 12, 1)
+
+'''
+Word Wrap / String Justification algorithm.
+Given a set of words and a length.
+You are required to print the words such that the words on each line end almost on the same column and the number of trailing spaces at the end is minimized.
+
+Given aaa bb cc ddddd and length is 5 print the following output.
+
+aaa
+bb cc
+ddddd
+'''
+
+def word_wrap(string, l):
+    if len(string) <= 5:
+        print string
+    else:
+        if string[l-1] != string[l]:
+            print string[:l]
+            string = string[l:]
+        else:
+            while string[l-1] == string[l-2]:
+                l -= 1
+            if string[:l-1] != ' ':
+                print string[:l-1]
+            string = string[l-1:]
+        word_wrap(string, l)
+
+#Test for word_wrap
+#word_wrap('aaa bb cc ddddd', 5)
+
+'''
+Returns a^b, as the standard mathematical exponentiation function
+public double pow(double a, int b) {}
+'''
+
+def _pow(curr, a, b):
+    if b == 1:
+        return curr
+    else:
+        return _pow(curr*a, a, b-1)
+
+def pow(a, b):
+    return _pow(a, a, b)
+
+#Test for pow
+#print pow(2, 3), 8
+#print pow(3, 2), 9
+

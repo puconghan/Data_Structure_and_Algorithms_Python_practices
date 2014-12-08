@@ -11,3 +11,4 @@ Repository including:
     Work consulted: https://github.com/gaylemcd/ctci (for chapter one to three)
 
 3.  Implementations for classical computer science problems
+    Problem set one: Including solutions and test cases for popular computer science challenges up to Dec 2014
