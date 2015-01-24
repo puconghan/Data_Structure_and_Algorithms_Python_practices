@@ -1,3 +1,7 @@
+'''
+Access time O(1)
+'''
+
 class HashEntry:
 	def __init__(self, key, value):
 		self.data = value
@@ -7,7 +11,7 @@ class HashEntry:
 	def getvalue(self):
 		return self.data
 
-#Linear probling
+#Open Addressing - Linear probling
 class HashTable:
 	def __init__(self, size):
 		self.size = size
