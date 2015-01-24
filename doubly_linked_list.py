@@ -28,8 +28,8 @@ class LinkedList:
 			if self.head.data == value:
 				self.head = self.head.next
 			else:
-				currnode = self.head
-				prevnode = currnode
+				prevnode = self.head
+				currnode = prevnode.next
 				while currnode is not None:
 					if currnode.data == value:
 						prevnode.next = currnode.next
