@@ -1,3 +1,7 @@
+'''
+FILO | LIFO
+'''
+
 class Stack:
 	def __init__(self):
 		self.stack = []
@@ -10,7 +14,12 @@ class Stack:
 			return None
 		else:
 			self.count -= 1
-			return self.stack.pop()
+			return self.stack.pop(-1)
+	def peel(self):
+		if self.count == 0 or len(self.stack) == 0:
+			return None
+		else:
+			return self.stack[-1]
 	def size(self):
 		return self.count
 	def isEmpty(self):
@@ -19,6 +28,7 @@ class Stack:
 '''
 #Test cases
 stack = Stack()
+stack.push(1)
 stack.push(2)
 stack.push(4)
 stack.push(6)
@@ -34,5 +44,7 @@ print stack.pop(), 8
 print stack.pop(), 6
 print stack.pop(), 4
 print stack.pop(), 2
+print stack.peel(), 1
+print stack.size(), 1
 print stack.isEmpty(), True
 '''

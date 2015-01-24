@@ -1,3 +1,7 @@
+'''
+FIFO | LILO
+'''
+
 class Queue:
 	def __init__(self):
 		self.queue = []
