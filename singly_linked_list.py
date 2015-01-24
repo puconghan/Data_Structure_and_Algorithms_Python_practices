@@ -1,3 +1,7 @@
+'''
+Dynamic size | Ease of insertion/deletion | Sequentially access | Extra memory space for a pointer
+'''
+
 class Node:
 	def __init__(self, value):
 		self.data = value
@@ -27,7 +31,7 @@ class LinkedList:
 				self.head = self.head.next
 			else:
 				prevnode = self.head
-				currnode = self.head.next
+				currnode = prevnode.next
 				while currnode is not None:
 					if currnode.data == value:
 						prevnode.next = currnode.next
