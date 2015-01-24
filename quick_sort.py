@@ -1,4 +1,11 @@
-#pivot is the first element
+'''
+Divide-and-Conquer algorithm
+Average run time O(n*log(n))
+Worst case run time O(n^2)
+To avoid worst case run time, select middle element as the pivot
+'''
+
+#Pivot is the first element.
 def quick_sort(lst):
 	if len(lst) == 0:
 		return []
@@ -20,7 +27,7 @@ def quick_sort(lst):
 print quick_sort([2,6,7,3,9,1,5])
 '''
 
-#pivot is the element in the middle
+#Pivot is the element in the middle.
 def quick_sort(lst):
     if len(lst) == 0:
         return []
@@ -42,7 +49,7 @@ def quick_sort(lst):
 print quick_sort([2,6,7,3,9,1,5])
 '''
 
-#pivot is the element in the middle. Pointers moved from both ends [Improved version]
+#Pivot is the element in the middle. Pointers moved from both ends [Improved version].
 def quick_sort(lst, l, r):
 	if len(lst) > 2 and r > l:
 		left, right = l, r
