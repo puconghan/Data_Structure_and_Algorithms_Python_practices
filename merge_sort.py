@@ -1,3 +1,8 @@
+'''
+Divide-and-Conquer algorithm
+Average run time O(n*log(n))
+'''
+
 def merge_sort(lst):
     if len(lst) < 2:
 		return lst
