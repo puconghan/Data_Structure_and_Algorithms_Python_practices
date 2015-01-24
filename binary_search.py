@@ -1,4 +1,4 @@
-#While loop solution
+#Implementation using while-loop
 def binary_search(lst, item):
 	first = 0
 	last = len(lst) - 1
@@ -20,7 +20,7 @@ print binary_search([1,2,3,4,5,6,7,8], 4), True
 print binary_search([1,2,3,5,6,7,8,9], 4), False
 '''
 
-#Traditional recursive solution
+#Implementation using recursion
 def binary_search(lst, item, first = 0, last = 0):
 	if len(lst) == 0 or item is None:
 		return False
@@ -41,7 +41,7 @@ print binary_search([1,2,3,4,5,6,7,8], 4, 0, 7), True
 print binary_search([1,2,3,5,6,7,8,9], 4, 0, 7), False
 '''
 
-#Python list recursive solution
+#Implementation using recursion and list data structure
 def binary_search(lst, item):
 	if len(lst) == 0:
 		return False
