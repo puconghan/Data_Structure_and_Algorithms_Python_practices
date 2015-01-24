@@ -1,3 +1,7 @@
+'''
+Average run time O(log(n))
+'''
+
 #Implementation using while-loop
 def binary_search(lst, item):
 	first = 0
