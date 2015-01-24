@@ -13,6 +13,19 @@ class Node:
 class BinarySearchTree:
 	def __init__(self):
 		self.root = None
+	def search(self, value):
+		return self._search(value, self.root)
+	def _search(self, value, leaf):
+		if leaf is None:
+			return None, 'Not Found'
+		elif leaf.getValue() == value:
+			return leaf
+		elif value < leaf.getValue() and leaf.hasLeft():
+			return self._search(value, leaf.left)
+		elif value > leaf.getValue() and leaf.hasRight():
+			return self._search(value, leaf.right)
+		else:
+			return None, 'Not Found'
 	def insert(self, value):
 		if not self.root:
 			self.root = Node(value)
@@ -181,6 +194,7 @@ tree.insert(15)
 tree.insert(11)
 tree.insert(29)
 tree.insert(1)
+print tree.search(15), tree.search(15).getValue()
 print 'Print Level Up'
 tree.printlevelup(tree.root)
 print 'Print Level Down'
