@@ -1,4 +1,7 @@
 '''
+Comparison based sorting technique based on Binary Heap data structure.
+[A Binary Heap is a Complete Binary Tree where items are stored in a special order such that value in a parent node is greater(or smaller) than the values in its two children nodes]
+Average run time O(n*log(n))
 Parent: 		floor(i - 1) / 2
 Left Child:		2 * i + 1
 Right Child:	2 * i + 2
