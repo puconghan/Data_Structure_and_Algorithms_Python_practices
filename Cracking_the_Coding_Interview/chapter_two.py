@@ -161,7 +161,7 @@ def add_num_linkedlist(node1, node2):
             else:
                 carry = 0
             newlist.insert(digit)
-            addition, digit = 0, 0
+            digit = 0
         return newlist
 
 '''
@@ -193,13 +193,16 @@ def find_circular(linkedlist):
     if linkedlist.head is not None:
         return None, 'Linked list is empty'
     pointer1, pointer2 = linkedlist.head, linkedlist.head
+    #Find meeting point.
     while pointer2.next is not None:
         pointer1 = pointer1.next
         pointer2 = pointer2.next.next
         if pointer1 == pointer2:
             break
+    #Break if the faster pointer reach the end.
     if pointer2.next is None:
         return None, 'Linked list is not corrupted/circular'
+    #Move one pointer to head. Making them move at same speed, they will meet at the beginning of the loop.
     pointer1 = linkedlist.head
     while pointer1 != pointer2:
         pointer1 = pointer1.next

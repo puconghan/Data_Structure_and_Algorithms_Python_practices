@@ -181,6 +181,7 @@ class Stack:
         return self.stack[-1]
     def isEmpty(self):
         return self.count == 0
+
 def sortStack(targetstack):
     newstack = Stack()
     while !targetstack.isEmpty():
