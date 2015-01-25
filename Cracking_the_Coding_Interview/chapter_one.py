@@ -177,6 +177,26 @@ def check_permutation(str1, str2):
             return False
     return True
 
+def check_permutation(str1, str2):
+    if len(str1) != len(str2):
+        return False
+    else:
+        dic = {}
+        for char in str1:
+            if char in dic:
+                dic[char] += 1
+            else:
+                dic[char] = 1
+        for char in str2:
+            if char in dic:
+                dic[char] += 1
+            else:
+                dic[char] = 1
+        for val in dic.values():
+            if val != 2:
+                return False
+        return True
+
 '''
 #Test case
 print check_permutation('abc', 'cba'), True
