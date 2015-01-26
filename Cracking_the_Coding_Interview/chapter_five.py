@@ -66,6 +66,7 @@ def binary_convertor(decimal):
                     image = '1' + image
                 if decimal > 1:
                     image = '1' + image
+                    decimal = decimal - 1
         result = result + image
     return result
 
