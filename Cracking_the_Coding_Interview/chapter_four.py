@@ -82,7 +82,7 @@ def ArrayToBinaryTree(inputarray):
         return BinaryTree(inputarray[0])
     else:
         pivot = len(inputarray) // 2
-        return BinaryTree(inputarray[pivot], inputarray[:pivot], inputarray[pivot+1:])
+        return BinaryTree(inputarray[pivot], ArrayToBinaryTree(inputarray[:pivot]), ArrayToBinaryTree(inputarray[pivot+1:]))
 
 '''
 4.4 Given a binary search tree, design an algorithm which creates a linked list of all the nodes at each depth
