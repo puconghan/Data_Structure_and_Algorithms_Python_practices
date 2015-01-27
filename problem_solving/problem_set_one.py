@@ -420,7 +420,7 @@ def printLevelDown(node):
         else:
             print ''.join(result)
             level = currlevel
-            result = ""
+            result = str(curr.data)
         if curr.left is not None:
             queue.append((curr.left, level+1))
         if curr.right is not None:
@@ -723,4 +723,3 @@ def pow(a, b):
 #Test for pow
 #print pow(2, 3), 8
 #print pow(3, 2), 9
-
