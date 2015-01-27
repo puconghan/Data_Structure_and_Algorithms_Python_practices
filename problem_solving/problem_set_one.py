@@ -232,7 +232,7 @@ def computeList(lst, i):
         return 0
     levelsum = 0
     for item in lst:
-        if type(item) is list:
+        if isinstance(item, list):
             levelsum += computeList(item, i+1)
         else:
             levelsum += item*i
@@ -266,7 +266,7 @@ def numberSequence(num):
                 if count != 1:
                     result += '^' + str(count)
                 count = 1
-                digit = str(num[i])
+                digit = num[i]
         result += ' + ' + str(digit)
         if count != 1:
             result += '^' + str(count)
@@ -295,14 +295,21 @@ def urlAbbr(url):
                 if digit == char:
                     count += 1
                 else:
-                    result += (str(count) + digit)
+                    if count != 1:
+                        result += (str(count) + digit)
+                    else:
+                        result += digit
                     count = 1
                     digit = char
-        result += (str(count) + digit)
+        if count != 1:
+            result += (str(count) + digit)
+        else:
+            result = digit
         return result
 
 #Test for urlAbbr
-#print urlAbbr('aabbbcc')
+#print urlAbbr('abbbccccddddd')
+#print urlAbbr('abcd')
 
 '''
 Given a binary tree where all the right nodes are leaf nodes, flip it upside down and turn it into a tree with left leaf nodes.
@@ -690,6 +697,7 @@ Returns a^b, as the standard mathematical exponentiation function
 public double pow(double a, int b) {}
 '''
 
+#Runtime O(n)
 def _pow(curr, a, b):
     if b == 1:
         return curr
@@ -698,6 +706,19 @@ def _pow(curr, a, b):
 
 def pow(a, b):
     return _pow(a, a, b)
+
+#Runtime O(log(n))
+def pow(a, b):
+    if b < 0:
+        return 1 // pow(a, -b)
+    elif b == 0:
+        return 1
+    else:
+        halfpow = pow(a, b//2)
+        if b%2 == 0:
+            return halfpow * halfpow
+        else:
+            return halfpow * halfpow * a
 
 #Test for pow
 #print pow(2, 3), 8
