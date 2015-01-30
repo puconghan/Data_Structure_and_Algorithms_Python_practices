@@ -149,4 +149,22 @@ def divide_and_conquer(lst):
         maxval = max(max1, max2)
     return minval, maxval
 
+'''
+Test case
 print divide_and_conquer([9,3,5,1,0,3,6])
+'''
+
+'''
+CSV parser
+'''
+
+def csv_parser(inputs):
+    for line in inputs:
+        chunks = line.split(',')
+        for chunk in chunks:
+            print chunk.replace('\n', '').strip()
+
+'''
+Test case
+csv_parser(['hello, world, this, is, test', 'hello2, world2, this2, is2, test2'])
+'''
