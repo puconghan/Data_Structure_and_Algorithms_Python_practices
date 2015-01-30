@@ -168,3 +168,34 @@ def csv_parser(inputs):
 Test case
 csv_parser(['hello, world, this, is, test', 'hello2, world2, this2, is2, test2'])
 '''
+
+
+'''
+Find all the combinations of a string in lowercase and uppercase
+"ab" -> ["ab", "Ab", "aB", "AB"]
+'''
+def allset(string):
+    charlist = []
+    charlist.extend([char.lower() for char in string])
+    charlist.extend([char.upper() for char in string])
+    return charlist
+
+def combinations(charlist):
+    if len(charlist) == 0:
+        return []
+    if len(charlist) == 1:
+        return [charlist]
+    else:
+        results = []
+        for i in xrange(len(charlist)):
+            pivot = charlist[i]
+            rest = charlist[:i] + charlist[i+1:]
+            for comb in combinations(rest):
+                results.append([pivot] + comb)
+        return results
+
+'''
+Test case
+allchar = allset('ab')
+print combinations(allchar)
+'''
