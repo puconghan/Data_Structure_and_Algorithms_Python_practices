@@ -199,3 +199,82 @@ Test case
 allchar = allset('ab')
 print combinations(allchar)
 '''
+
+'''
+Parsing cvs file
+inputs = [
+'Pucong,Han,puconghan@gmail.com,San Francisco,1',
+'Jie,Zou,jiezou@gmail.com,"San Francisco, CA",0',
+'"Yao, ""Huang""",Huang,yaohuang@gmail.com,New York,1',
+'Shiye,"""Hu"",""Shiye""",shiyehu@gmail.com,New York,"Two"'
+]
+'''
+
+def input_parser(inputs):
+    for line in inputs:
+        counter = 0
+        mode = 0
+        result = ''
+        while counter < len(line)-1:
+            if line[counter] == '"':
+                if line[counter + 1] == '"':
+                    result += '"'
+                    counter += 2
+                else:
+                    if mode == 0:
+                        mode = 1
+                    else:
+                        mode = 0
+                    counter += 1
+            else:
+                if mode == 0:
+                    if line[counter] == ',':
+                        result += '|'
+                    else:
+                        result += line[counter]
+                    counter += 1
+                if mode == 1:
+                    result += line[counter]
+                    counter += 1
+        print result
+
+'''
+#Test case
+inputs = [
+'Pucong,Han,puconghan@gmail.com,San Francisco,1',
+'Jie,Zou,jiezou@gmail.com,"San Francisco, CA",0',
+'"Yao, ""Huang""",Huang,yaohuang@gmail.com,New York,1',
+'Shiye,"""Hu"",""Shiye""",shiyehu@gmail.com,New York,"Two"'
+]
+input_parser(inputs)
+'''
+
+'''
+You are given a 2D Array that contains only 0s and 1s in sorted order. i.e. First Os and then 1s.
+Array:
+    0 0 0 1
+    1 1 1 1
+    0 0 1 1
+    0 1 1 1
+You have to figure out the row that contains maximum number of 1s.
+'''
+
+def maximum_one(lst):
+    r, c = len(lst), len(lst[0])
+    for col in xrange(c):
+        for row in xrange(r):
+            if lst[row][col] == 1:
+                return lst[row]
+
+'''
+Test case
+lst = [
+[0,0,0,1],
+[1,1,1,1],
+[0,0,1,1],
+[0,1,1,1]
+]
+print maximum_one(lst)
+'''
+
+
