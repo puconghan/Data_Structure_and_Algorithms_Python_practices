@@ -277,4 +277,36 @@ lst = [
 print maximum_one(lst)
 '''
 
+'''
+Given a list of jobs with their dependencies, identify a list of job execution which respects all dependencies.
+Example:
+A-->B, C, F
+B-->C
+C-->E
+Output: [E,C,B,F,A]
 
+Input: {("B", set(["C"])), ("C", set(["E"])), ("A", set(["B", "C", "F"]))}
+'''
+
+result = []
+def dependency(inputs, result):
+    for key in inputs:
+        for val in inputs[key]:
+            if val not in inputs:
+                if val not in result:
+                    result.append(val)
+            else:
+                newdict = {}
+                for newkey in inputs:
+                    if newkey != key:
+                        newdict[newkey] = inputs[newkey]
+                dependency(newdict, result)
+        if key not in result:
+            result.append(key)
+
+'''
+inputs = {"B": ("C"), "C": ("E"), "A": ("B", "C", "F")}
+dependency(inputs, result)
+print result
+should return ['E', 'C', 'B', 'F', 'A']
+'''

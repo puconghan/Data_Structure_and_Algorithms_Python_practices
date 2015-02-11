@@ -63,6 +63,8 @@ class BinarySearchTree:
 						leaf.data = successor.data
 					if parent:
 						parent.right = None
+                    else:
+                        leaf.left = None
 			elif value < leaf.getValue() and leaf.hasLeft():
 				leaf.left = self._delete(value, leaf.left)
 			elif value > leaf.getValue() and leaf.hasRight():
