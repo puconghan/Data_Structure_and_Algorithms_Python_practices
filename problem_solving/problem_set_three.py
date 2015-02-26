@@ -146,6 +146,7 @@ print fibonacci(6)
 Print the matrix in spiral form
 '''
 
+#Solution using loops
 def move_right_down(start, matrix, visited):
     (r, c) = start
     c += 1
@@ -193,6 +194,81 @@ def print_spiral(matrix):
         point = move_right_down(point, matrix, visited)
         point = move_left_up(point, matrix, visited)
     print visited
+
+#Test case
+'''
+print_spiral([[1,2],[3,4]])
+print_spiral([[1,2,3],[4,5,6],[7,8,9]])
+print_spiral([[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]])
+'''
+
+#Solution using recursive functions
+def move_right(point, matrix, visited):
+    (r, c) = point
+    if matrix[r][c] not in visited:
+        while c < len(matrix[0]):
+            if matrix[r][c] not in visited:
+                visited.append(matrix[r][c])
+            else:
+                break
+            c += 1
+        c -= 1
+        if len(matrix)*len(matrix[0]) > len(visited):
+            r += 1
+            point = (r, c)
+            move_down(point, matrix, visited)
+
+def move_down(point, matrix, visited):
+    (r, c) = point
+    if matrix[r][c] not in visited:
+        while r < len(matrix):
+            if matrix[r][c] not in visited:
+                visited.append(matrix[r][c])
+            else:
+                break
+            r += 1
+        r -= 1
+        if len(matrix)*len(matrix[0]) > len(visited):
+            c -= 1
+            point = (r, c)
+            move_left(point, matrix, visited)
+
+def move_left(point, matrix, visited):
+    (r, c) = point
+    if matrix[r][c] not in visited:
+        while c >= 0:
+            if matrix[r][c] not in visited:
+                visited.append(matrix[r][c])
+            else:
+                break
+            c -= 1
+        c += 1
+        if len(matrix)*len(matrix[0]) > len(visited):
+            r -= 1
+            point = (r, c)
+            move_up(point, matrix, visited)
+
+def move_up(point, matrix, visited):
+    (r, c) = point
+    if matrix[r][c] not in visited:
+        while r >= 0:
+            if matrix[r][c] not in visited:
+                visited.append(matrix[r][c])
+            else:
+                break
+            r -= 1
+        r += 1
+        if len(matrix)*len(matrix[0]) > len(visited):
+            c += 1
+            point = (r, c)
+            move_right(point, matrix, visited)
+
+def print_spiral(matrix):
+    point = (0, 0)
+    visited = []
+    move_right(point, matrix, visited)
+    print visited
+
 
 #Test case
 '''
