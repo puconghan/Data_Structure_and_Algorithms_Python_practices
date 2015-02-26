@@ -304,9 +304,31 @@ def dependency(inputs, result):
         if key not in result:
             result.append(key)
 
+#Test case
 '''
 inputs = {"B": ("C"), "C": ("E"), "A": ("B", "C", "F")}
 dependency(inputs, result)
 print result
 should return ['E', 'C', 'B', 'F', 'A']
+'''
+
+def dependency(inputs):
+    result = []
+    stack = []
+    for key in inputs:
+        if key not in stack:
+            stack.append(key)
+        for val in inputs[key]:
+            if val not in stack:
+                stack.append(val)
+            while stack[-1] not in inputs and stack[-1] not in result:
+                result.append(stack.pop(-1))
+    while len(stack) > 0:
+        result.append(stack.pop(-1))
+    return result
+
+#Test case
+'''
+inputs = {"B": ("C"), "C": ("E"), "A": ("B", "C", "F")}
+print dependency(inputs)
 '''

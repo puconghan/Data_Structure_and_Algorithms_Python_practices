@@ -141,3 +141,62 @@ def fibonacci(n):
 '''
 print fibonacci(6)
 '''
+
+'''
+Print the matrix in spiral form
+'''
+
+def move_right_down(start, matrix, visited):
+    (r, c) = start
+    c += 1
+    while c < len(matrix[0]):
+        if matrix[r][c] not in visited:
+            visited.append(matrix[r][c])
+        else:
+            break
+        c += 1
+    c -= 1
+    r += 1
+    while r < len(matrix):
+        if matrix[r][c] not in visited:
+            visited.append(matrix[r][c])
+        else:
+            break
+        r += 1
+    r -= 1
+    return (r, c)
+
+def move_left_up(start, matrix, visited):
+    (r, c) = start
+    c -= 1
+    while c >= 0:
+        if matrix[r][c] not in visited:
+            visited.append(matrix[r][c])
+        else:
+            break
+        c -= 1
+    c += 1
+    r -= 1
+    while r >= 0:
+        if matrix[r][c] not in visited:
+            visited.append(matrix[r][c])
+        else:
+            break
+        r -= 1
+    r += 1
+    return (r, c)
+
+def print_spiral(matrix):
+    visited = []
+    point = (0, -1)
+    while len(matrix)*len(matrix[0]) > len(visited):
+        point = move_right_down(point, matrix, visited)
+        point = move_left_up(point, matrix, visited)
+    print visited
+
+#Test case
+'''
+print_spiral([[1,2],[3,4]])
+print_spiral([[1,2,3],[4,5,6],[7,8,9]])
+print_spiral([[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]])
+'''
