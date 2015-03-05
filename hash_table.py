@@ -1,4 +1,5 @@
 '''
+Hash table (hash map) is a data structure used to implement an associative array, a structure that can map keys to values. A hash table uses a hash function to compute an index into an array of buckets or slots, from which the correct value can be found.
 Access time O(1)
 '''
 
@@ -59,7 +60,7 @@ class HashTable:
 	def get(self, key):
 		hashkey = key % self.size
 		if self.table[hashkey] is None:
-			return None
+			return None, 'Not Found'
 		elif isinstance(self.table[hashkey], HashEntry):
 			return self.table[hashkey].getvalue()
 		else:

@@ -11,13 +11,13 @@ class Stack:
 		self.count += 1
 	def pop(self):
 		if self.count == 0 or len(self.stack) == 0:
-			return None
+			return False, 'Empty Stack'
 		else:
 			self.count -= 1
 			return self.stack.pop(-1)
 	def peel(self):
 		if self.count == 0 or len(self.stack) == 0:
-			return None
+			return False, 'Empty Stack'
 		else:
 			return self.stack[-1]
 	def size(self):
@@ -25,8 +25,8 @@ class Stack:
 	def isEmpty(self):
 		return self.count == 0
 
-'''
 #Test cases
+'''
 stack = Stack()
 stack.push(1)
 stack.push(2)

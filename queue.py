@@ -11,19 +11,17 @@ class Queue:
 		self.count += 1
 	def dequeue(self):
 		if self.count == 0 or len(self.queue) == 0:
-			return None
+			return False, 'Empty Queue'
 		else:
-			item = self.queue[0]
-			self.queue = self.queue[1:]
 			self.count -= 1
-			return item
+			return self.queue.pop(0)
 	def size(self):
 		return self.count
 	def isEmpty(self):
 		return self.count == 0
 
-'''
 #Test cases
+'''
 queue = Queue()
 queue.enqueue(1)
 queue.enqueue(3)
