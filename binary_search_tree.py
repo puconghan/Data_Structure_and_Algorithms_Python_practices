@@ -117,7 +117,7 @@ class BinarySearchTree:
             stack = [leaf]
             output = []
             while len(stack) > 0:
-                curr = stack.pop(-1)
+                curr = stack.pop()
                 output.append(curr.getValue())
                 if curr.hasLeft():
                     stack.append(curr.left)
@@ -129,9 +129,9 @@ class BinarySearchTree:
             print leaf.data
         else:
             if leaf.hasLeft():
-                self.printlevel(leaf.left, level - 1)
+                self.printlevel(leaf.left, level-1)
             if leaf.hasRight():
-                self.printlevel(leaf.right, level - 1)
+                self.printlevel(leaf.right, level-1)
     def printleveldown(self, leaf):
         for i in xrange(self.treedepth()):
             self.printlevel(leaf, i)
@@ -159,6 +159,7 @@ class BinarySearchTree:
                     print printlist
 
 #Test cases
+'''
 tree = BinarySearchTree()
 tree.insert(8)
 tree.insert(5)
@@ -178,9 +179,12 @@ print 'Get Tree Size: ', tree.treesize()
 print 'Get Tree Depth: ', tree.treedepth()
 print 'BFS: ', tree.BreadthFirstTraversal(tree.root)
 print 'DFS: ', tree.DepthFirstTraversal(tree.root)
+print 'Print level 2'
+tree.printlevel(tree.root, 2)
 print 'Print Level Up'
 tree.printlevelup(tree.root)
 print 'Print Level Down'
 tree.printleveldown(tree.root)
 print 'Print the deepest Level'
 tree.printdeepestlevel(tree.root)
+'''

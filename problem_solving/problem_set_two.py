@@ -306,10 +306,13 @@ def dependency(inputs, result):
 
 #Test case
 '''
-inputs = {"B": ("C"), "C": ("E"), "A": ("B", "C", "F")}
+inputs = {
+    "B": ("C"),
+    "C": ("E"),
+    "A": ("B", "C", "F")
+}
 dependency(inputs, result)
 print result
-should return ['E', 'C', 'B', 'F', 'A']
 '''
 
 def dependency(inputs):
@@ -328,7 +331,9 @@ def dependency(inputs):
     return result
 
 #Test case
-'''
-inputs = {"B": ("C"), "C": ("E"), "A": ("B", "C", "F")}
+inputs = {
+    "B": ("C"),
+    "C": ("E"),
+    "A": ("B", "C", "F")
+}
 print dependency(inputs)
-'''

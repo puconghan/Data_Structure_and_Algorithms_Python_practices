@@ -276,3 +276,58 @@ print_spiral([[1,2],[3,4]])
 print_spiral([[1,2,3],[4,5,6],[7,8,9]])
 print_spiral([[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]])
 '''
+
+'''
+DFS for the following adjacency graph
+'''
+graph = {
+    'A': set(['B', 'C']),
+    'B': set(['A', 'D', 'E']),
+    'C': set(['A', 'F']),
+    'D': set(['B']),
+    'E': set(['B', 'F']),
+    'F': set(['C', 'E'])
+}
+
+def dfs(graph, start):
+    visited, stack = set(), [start]
+    while stack:
+        vertex = stack.pop()
+        if vertex not in visited:
+            visited.add(vertex)
+            stack.extend(graph[vertex] - visited)
+    return visited
+
+#Test case
+'''
+print dfs(graph, 'A')
+'''
+
+'''
+You have an analog clock with two hands, one for the hour and one for the minute. Given a time of the day, what is the angle between the two hands?
+'''
+
+def hourminutedegree(time):
+    import re
+    hour, minute = re.split(':', time)
+    hour, minute = (int(hour)-12) if (int(hour)>12) else int(hour), int(minute)
+    mdegree = 6 * minute
+    hdegree = 30 * hour + 0.5 * minute
+    degree = abs(mdegree-hdegree)
+    return min(degree, 360-degree)
+
+#Test case
+'''
+print hourminutedegree('11:30')
+'''
+
+'''
+You have an array of numbers. For example: [-5, 1, 7, -3, 4]
+Find the pair with the greatest product.In the example above, it would be 28(7x4)
+'''
+
+def greatestproduct(lst):
+    lst = sorted(lst)
+    return max(lst[0]*lst[1], lst[-1]*lst[-2])
+
+print greatestproduct([-5, 1, 7, -3, 4])

@@ -5,28 +5,17 @@ Worst case run time O(n^2)
 To avoid worst case run time, select middle element as the pivot
 '''
 
-#Pivot is the element in the middle.
 def quick_sort(lst):
     size = len(lst)
-    if size == 0:
-        return []
-    elif size == 1:
+    if size < 2:
         return lst
     else:
-        pivot = size / 2
-        left, right = [], []
-        element = lst.pop(pivot)
-        for item in lst:
-            if item <= element:
-                left.append(item)
-            else:
-                right.append(item)
-        return quick_sort(left) + [element] + quick_sort(right)
+        pivot = lst.pop(size / 2)
+        left, right = [val for val in lst if val <= pivot], [val for val in lst if val > pivot]
+        return quick_sort(left) + [pivot] + quick_sort(right)
 
 #Test case
-'''
 print quick_sort([2,6,7,3,9,1,5])
-'''
 
 #Pivot is the element in the middle. Pointers moved from both ends.
 def quick_sort(lst, l, r):

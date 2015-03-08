@@ -14,8 +14,8 @@ def has_all_unique_char(inputstring):
             return False
     return True
 
-'''
 #Test case
+'''
 print has_all_unique_char('abcdefg'), True
 print has_all_unique_char('abcdefgg'), False
 '''
@@ -28,8 +28,8 @@ def has_all_unique_char(inputstring):
                 return False
     return True
 
-'''
 #Test case
+'''
 print has_all_unique_char('abcdefg'), True
 print has_all_unique_char('abcdefgg'), False
 '''
@@ -44,8 +44,8 @@ def has_all_unique_char(inputstring):
         list.append(item)
     return True
 
-'''
 #Test case
+'''
 print has_all_unique_char('abcdefg'), True
 print has_all_unique_char('abcdefgg'), False
 '''
@@ -63,8 +63,8 @@ def has_all_unique_char(inputstring):
                 charlist[ord(char)] = True
         return True
 
-'''
 #Test case
+'''
 print has_all_unique_char('abcdefg'), True
 print has_all_unique_char('abcdefgg'), False
 '''
@@ -79,8 +79,8 @@ def has_all_unique_char(inputstring):
             char_table[char] = True
     return True
 
-'''
 #Test case
+'''
 print has_all_unique_char('abcdefg'), True
 print has_all_unique_char('abcdefgg'), False
 '''
@@ -89,8 +89,8 @@ def has_all_unique_char(inputstring):
     if len(inputstring) > 256: return False
     else: return len(set(inputstring)) == len(inputstring)
 
-'''
 #Test case
+'''
 print has_all_unique_char('abcdefg'), True
 print has_all_unique_char('abcdefgg'), False
 '''
@@ -110,8 +110,8 @@ def reverse_string(inputstring):
         output += stack.pop(-1)
     return output
 
-'''
 #Test case
+'''
 print 'Reverse abc: ', reverse_string('abc')
 '''
 
@@ -122,8 +122,8 @@ def reverse_string(inputstring):
     else:
         return inputstring[-1:] + reverse_string(inputstring[:-1])
 
-'''
 #Test case
+'''
 print 'Reverse abc: ', reverse_string('abc')
 '''
 
@@ -133,19 +133,23 @@ print 'Reverse abc: ', reverse_string('abc')
 
 #O(n^2)
 def check_permutation(str1, str2):
-    if len(str1) != len(str2):
+    tmp1, tmp2 = str1, str2
+    if len(tmp1) != len(tmp2):
         return False
     else:
-        for char in str1:
-            if str2.find(char) == -1:
+        for char in tmp1:
+            if tmp2.find(char) == -1:
                 return False
             else:
                 import re
-                str2 = re.sub(char, '', str2)
-        return True
+                tmp2 = re.sub(char, '', tmp2)
+        if tmp2 == '':
+            return True
+        else:
+            return False
 
-'''
 #Test case
+'''
 print check_permutation('abc', 'cba'), True
 print check_permutation('acd', 'abc'), False
 '''
@@ -157,8 +161,8 @@ def check_permutation(str1, str2):
     else:
         return sorted(str1) == sorted(str2)
 
-'''
 #Test case
+'''
 print check_permutation('abc', 'cba'), True
 print check_permutation('acd', 'abc'), False
 '''
@@ -197,8 +201,8 @@ def check_permutation(str1, str2):
                 return False
         return True
 
-'''
 #Test case
+'''
 print check_permutation('abc', 'cba'), True
 print check_permutation('acd', 'abc'), False
 '''
@@ -217,8 +221,8 @@ def replace_space(inputstring):
             result_list.append(char)
     return ''.join(result_list)
 
-'''
 #Test case
+'''
 print replace_space('abc def')
 '''
 
@@ -237,8 +241,8 @@ def replace_space(inputstring):
         outputstring += queue.pop(0)
     return outputstring
 
-'''
 #Test case
+'''
 print replace_space('abc def')
 '''
 
@@ -249,26 +253,30 @@ print replace_space('abc def')
 '''
 
 def simple_compress(inputstring):
-    outputlist = []
-    prevchar = ''
-    count = 1
+    outputlist, prevchar, count = [], '', 0
     for char in inputstring:
         if prevchar == char:
             count += 1
         else:
             if prevchar != '':
-                outputlist.append(char + str(count))
+                if count > 1:
+                    outputlist.append(char + str(count))
+                else:
+                    outputlist.append(char)
             count = 1
         prevchar = char
-    outputlist.append(char + str(count))
+    if count > 1:
+        outputlist.append(char + str(count))
+    else:
+        outputlist.append(char)
     outputstring = ''.join(outputlist)
     if len(inputstring) <= len(outputstring):
         return inputstring
     else:
         return outputstring
 
-'''
 #Test case
+'''
 print simple_compress('aabcccccaaa')
 '''
 
@@ -290,8 +298,8 @@ def simple_compress(inputstring):
             count = 1
     return newstring
 
-'''
 #Test case
+'''
 print simple_compress('aabcccccaaa')
 '''
 
@@ -325,12 +333,11 @@ class MatrixProcessor:
         return rowstring
     def rotate90degree(self):
         newmatrix = []
-        for c in xrange(self.c):
-            tempcolumn = []
+        for c in xrange(self.c-1, -1, -1):
+            temp = []
             for r in xrange(self.r):
-                tempcolumn.append(self.matrix[r][c])
-            tempcolumn.reverse()
-            newmatrix.append(tempcolumn)
+                temp.append(self.matrix[r][c])
+            newmatrix.insert(0, temp)
         self.r = len(newmatrix)
         self.c = len(newmatrix[0])
         self.newmatrix = newmatrix
@@ -348,7 +355,6 @@ class MatrixProcessor:
             for r in xrange(self.r):
                 self.matrix[r][index] = 0
 
-'''
 #Test cases
 matrix= MatrixProcessor([[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]])
 print matrix
@@ -357,7 +363,6 @@ print matrix.printnewmatrix()
 zeromatrix= MatrixProcessor([[1,2,3,4],[5,6,7,8],[9,10,0,12],[13,14,15,16]])
 zeromatrix.zerorowcolumn()
 print zeromatrix
-'''
 
 '''
 1.8 Assume you have a method isSubstring which checks if one word is a substring of another. Given two strings, s1 and s2, write code to check if s2 is a rotation of s1 using only one call to isSubstring (e.g.,"waterbottle" is a rotation of "erbottlewat").

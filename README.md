@@ -1,7 +1,7 @@
 Author: (Leo) Pucong Han
 
 Date:       2014-10-01
-Updated:    2015-01-24
+Updated:    2015-03-06
 
 Repository including:
 
@@ -12,4 +12,4 @@ Repository including:
     Work consulted: https://github.com/gaylemcd/ctci (only from chapter one to three)
 
 3.  Implementations for classical computer science problems and challenges
-    Problem set one: Including solutions and test cases for popular computer science challenges up to Dec 2014
+    Problem set one: Including solutions and test cases for popular computer science challenges up to Dec 2015
