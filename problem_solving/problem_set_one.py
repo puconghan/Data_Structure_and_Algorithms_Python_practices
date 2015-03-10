@@ -188,11 +188,13 @@ A sub-sequence of an array is a sequence which can be constructed by removing el
 
 #Solution: O(N2) time and O(1) space
 def expandFromCenter(s, l, r):
-    length = len(s)
-    while l>0 and r<length-1 and s[l-1] == s[r+1]:
+    while l>0 and r<len(s)-1 and s[l] == s[r]:
         l = l-1
         r = r+1
-    return s[l:r+1]
+    if s[l] == s[r]:
+        return s[l:r+1]
+    else:
+        return s[l+1:r]
 
 #Test for expandFromCenter
 #print expandFromCenter('abcba', 2, 2), 'abcba'
