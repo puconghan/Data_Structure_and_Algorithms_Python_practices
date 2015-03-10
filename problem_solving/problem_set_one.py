@@ -149,11 +149,8 @@ Write an function to judge whether the input String is a number
 #Solution using regular expression
 import re
 def isNumber(inputs):
-    m = re.search('(^-)?d*(\.)?d*', inputs)
-    if m:
-        return True
-    else:
-        return False
+    m = re.match(r'(^-)?\d*(\.)?\d*', inputs)
+    return True if m.group() else False
 
 #Solution using ascii
 def isNumber(inputs):
